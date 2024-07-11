@@ -23,11 +23,11 @@ def get_counter_by_uuid(uuid: str, Referer: str):
 
     filename =  join(datafolder, f'{uuid}.svg')
     dwg = svgwrite.Drawing(filename, (150,20))
-    dwg.add(dwg.text(countStr, insert=(0, 13), fill='black'))
+    dwg.add(dwg.text(countStr, insert=(0, 13), fill='green'))
     dwg.add(dwg.rect(insert=(0, 0), 
                      size=('300px','300px'), 
                      fill='yellow', 
-                     fill_opacity=0.4,
+                     fill_opacity=0.2,
                     #  stroke=svgwrite.rgb(255, 0, 0, '%'),  # Red stroke
                     #  stroke_width=5,
                     #  stroke_opacity=0.6
