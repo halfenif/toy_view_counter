@@ -28,13 +28,7 @@ app.add_middleware(
 @app.get("/readcount/{uuid}", response_model_by_alias=FileResponse)
 def get_count_by_uuid(uuid: str, Referer: str = Header(...)):
     # Referer Check
-    
-    if config.REFFER_CHECK:
-        try:
-            ORIGINS.index(Referer)
-        except Exception as e:
-            raise HTTPException(status.HTTP_401_UNAUTHORIZED, 
-                                detail='You Are NOT Me.')
+
     if not len(uuid) == 36:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, 
                             detail='Invalid Request ID')    
