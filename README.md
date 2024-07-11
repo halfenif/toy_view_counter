@@ -1,5 +1,6 @@
 # toy_view_counter
-Counter Service for Jekylle Blog
+Counter Service for Static Web (Ex Jekylle Blog)
+> Jekyll로 만든 블로그의 조회수용으로 만들었습니다.
 
 ## Concept
 - request id (UUID) and response read count (SVG Format)
