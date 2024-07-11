@@ -1,0 +1,16 @@
+services:
+  toy_view_counter:
+    build: ./
+    ports: 
+      - 9050:9050
+    networks:
+      - deploy_network
+    container_name: toy_view_counter
+    restart: always
+    volumes:
+      - ./data:/app/data:Z
+      - ./data/svgfile:/app/data/svgfile:Z
+
+networks:
+  deploy_network:
+    driver: bridge
