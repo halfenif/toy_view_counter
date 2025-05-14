@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 import dbModels, dbApi
 from dbEngin import engine
 
-from counterApi import get_counter_by_uuid
+from counterApi import get_counter_file_by_uuid, get_counter_data_by_uuid
 
 # --------------------------------------------------------------
 # Init DB
@@ -25,17 +25,26 @@ app.add_middleware(
     allow_origins=config.ORIGINS,
 )
 
-@app.get("/readcount/{uuid}", response_model_by_alias=FileResponse)
-def get_count_by_uuid(uuid: str, Referer: str = Header(...)):
+@app.get("/readcount_svg/{uuid}", response_model_by_alias=FileResponse)
+def get_count_svg_by_uuid(uuid: str, Referer: str = Header(...)):
     # Referer Check
 
     if not len(uuid) == 36:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, 
                             detail='Invalid Request ID')    
 
-    filename = get_counter_by_uuid(uuid, Referer)
+    filename = get_counter_file_by_uuid(uuid, Referer)
     return FileResponse(filename, media_type="image/svg+xml")
 
+@app.get("/readcount_json/{uuid}")
+def get_count_json_by_uuid(uuid: str, Referer: str = Header(...)):
+    # Referer Check
+
+    if not len(uuid) == 36:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, 
+                            detail='Invalid Request ID')    
+
+    return get_counter_data_by_uuid(uuid, Referer)
 
 
 # Set Swagger

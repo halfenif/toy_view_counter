@@ -8,7 +8,7 @@ import svgwrite
 
 from dbApi import sql_get_count_by_uuid
 
-def get_counter_by_uuid(uuid: str, Referer: str):
+def get_counter_file_by_uuid(uuid: str, Referer: str):
     countNumber = sql_get_count_by_uuid(uuid, Referer)
     
     if countNumber:
@@ -35,3 +35,16 @@ def get_counter_by_uuid(uuid: str, Referer: str):
     dwg.save()    
     
     return filename    
+
+def get_counter_data_by_uuid(uuid: str, Referer: str):
+    countNumber = sql_get_count_by_uuid(uuid, Referer)
+    
+
+    if not countNumber:
+        countNumber = -1
+
+    result = {
+        'count': countNumber,
+    }
+    
+    return result

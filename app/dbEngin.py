@@ -8,8 +8,9 @@ from sqlalchemy.orm import sessionmaker
 
 from fastapi import HTTPException, status
 
-if not config.IS_DEBUG:
-    SQLALCHEMY_DATABASE_URL = "sqlite:////app/data/sql_app.db"
+if config.IS_DEBUG:
+    SQLALCHEMY_DATABASE_URL = "sqlite:///./local_test.db"
+    print(SQLALCHEMY_DATABASE_URL)
 else:
     SQLALCHEMY_DATABASE_URL = "sqlite:///./data/sql_app.db"
 
