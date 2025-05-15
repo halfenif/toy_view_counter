@@ -47,8 +47,10 @@ def sql_get_count_by_uuid(itemUuid: str, Referer: str):
     db.commit()
     # db.refresh(dbItem)
 
+    result = dbCounterMain.read_count
+
     db.close()
 
-    return dbCounterMain.read_count
+    return result
 
     
