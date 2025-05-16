@@ -5,3 +5,4 @@ podman image rm localhost/toy_view_counter_toy_view_counter
 
 podman-compose build
 podman-compose up --detach
+podman logs -f toy_view_counter

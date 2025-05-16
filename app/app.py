@@ -6,7 +6,7 @@ config = Settings()
 from fastapi import Depends, FastAPI, Header
 from fastapi import HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, PlainTextResponse
 
 # DBMS
 import dbModels, dbApi
@@ -24,6 +24,13 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=config.ORIGINS,
 )
+
+@app.get("/robots.txt", response_class=PlainTextResponse)
+async def robots_txt():
+    return """
+User-agent: *
+Disallow: /
+"""
 
 @app.get("/readcount_svg/{uuid}", response_model_by_alias=FileResponse)
 def get_count_svg_by_uuid(uuid: str, Referer: str = Header(...)):
